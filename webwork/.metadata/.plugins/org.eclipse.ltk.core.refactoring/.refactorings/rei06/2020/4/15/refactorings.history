@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="&apos;rei06_request.jsp&apos; を &apos;jsp&apos; に移動" description="&apos;rei06_request.jsp&apos; を &apos;jsp&apos; に移動" destination="WebContent/jsp" element1="WebContent/rei06_request.jsp" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="1" stamp="1586141183361" updateReferences="true"/>&#x0A;<refactoring comment="&apos;tei06_response.jsp&apos; を &apos;jsp&apos; に移動" description="&apos;tei06_response.jsp&apos; を &apos;jsp&apos; に移動" destination="WebContent/jsp" element1="WebContent/tei06_response.jsp" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="1" stamp="1586141186319" updateReferences="true"/>
+</session>

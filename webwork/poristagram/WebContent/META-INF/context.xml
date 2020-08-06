@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<Context>
+<Resource
+name="mylinklogin"
+auth="Container"
+type="javax.sql.DataSource"
+driverClassName="com.mysql.jdbc.Driver"
+url="jdbc:mysql://127.0.0.1:3306/testagram?useSSL=false"
+username="muser"
+password="pass"
+/>
+</Context>

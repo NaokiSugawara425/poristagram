@@ -1,0 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>caption.jsp</title>
+	<style type="text/css">
+	table{margin:80px;}
+	</style>
+</head>
+<body>
+<form method="POST"  action="../UploadOkController"><br/>
+	<table border="0" align="center" >
+		<tr>
+			<td>
+				<div>
+					<a>
+				 		<img src="${imageUrl }" class="img-circle">
+					</a>
+				</div>
+			</td>
+			<td>
+				<textarea name="kome" placeholder="コメントを入力" rows="13" cols="50"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			タグ１<input type="text" size="50" name="tag1"><br>
+			タグ２<input type="text" size="50" name="tag2"><br>
+			タグ３<input type="text" size="50" name="tag3"><br>
+			タグ４<input type="text" size="50" name="tag4">
+			<input type="submit" value="シェア" />
+			</td>
+		</tr>
+	</table>
+</form>
+</body>
+</html>

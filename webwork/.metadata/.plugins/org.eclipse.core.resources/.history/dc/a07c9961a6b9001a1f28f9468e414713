@@ -1,0 +1,121 @@
+package poristagram;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+/**
+ * Servlet implementation class ProfileController
+ */
+@WebServlet("/ProfileController")
+public class ProfileController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+		//文字コードの設定
+		request.setCharacterEncoding("UTF-8");
+
+		//LoginBeanのクラス変数を宣言
+		//LoginBean profile=null;
+
+		//ArrayList<LoginBean> list = new ArrayList<LoginBean>();
+
+		//文字列クラスの変数を宣言
+		//String url=null;
+
+		try{
+			//渡されたデータをloginnameとpassword変数び格納
+
+			HttpSession session=request.getSession();
+
+		//	profile = (LoginBean)session.getAttribute("loginuser");
+
+			/*String u_id =profile.getu_id();
+			String u_pass = profile.getu_pass();
+			String u_intro = profile.getu_intro();
+			String u_birth = profile.getu_birth();
+			String u_jender = profile.getu_jender();
+			String u_age = profile.getu_age();
+			String u_icon = profile.getu_icon();
+			Date u_signin = profile.getu_signin();
+			String u_name = profile.getu_name();*/
+
+
+			/*String u_id =session.getParameter("u_id");
+			String u_pass = session.getParameter("u_pass");
+			String u_intro = session.getParameter("u_intro");
+			String u_birth = session.getParameter("u_birth");
+			String u_jender = session.getParameter("u_jender");
+			String u_age = session.getParameter("u_age");
+			String u_icon = session.getParameter("u_icon");
+			String u_signin = session.getParameter("u_signin");
+			String u_name = session.getParameter("u_name");*/
+
+			//LoginBean profile = new LoginBean();
+
+
+
+
+				/*ユーザー名とパスワード認証LoginBeanクラスのalluserメソッドの呼び出し
+				loginbean = LoginBean.login(u_id);
+
+
+					//セッションスコープをインスタンス化
+					HttpSession session=request.getSession();
+
+					// セッションの"login"というデータをtrueに
+					session.setAttribute("login", true);
+
+					// セッションにデータを付与
+
+					session.setAttribute("user", loginbean);
+					session.setAttribute("u_id", u_id);
+					session.setAttribute("u_pass", u_pass);
+					session.setAttribute("u_intro", u_intro);
+					session.setAttribute("u_birth", u_birth);
+					session.setAttribute("u_jender", u_jender);
+					session.setAttribute("u_age", u_age);
+					session.setAttribute("u_icon", u_icon);
+					session.setAttribute("u_signin", u_signin);
+					session.setAttribute("u_name", u_name);*/
+
+
+/*
+				}
+				}
+
+				// 認証確認でurlがセットされなかった場合は、認証失敗ページをセット
+				if(url == null)
+				{
+					//urlをセット
+					url="/jsp/fail.jsp";
+				}
+			}
+*/		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+
+		// コンテキストのインスタンス化
+		ServletContext context=getServletContext();
+
+		// リクエストディスパッチャーのインスタンス化
+		// 引数にフォワード先のパスを設定
+		RequestDispatcher rd=context.getRequestDispatcher("/jsp/profile.jsp");
+		// 転送する、(実行しているのはコントローラ)
+		rd.forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+}

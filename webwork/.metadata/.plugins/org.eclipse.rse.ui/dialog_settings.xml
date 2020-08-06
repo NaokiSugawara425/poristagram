@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="RemoteSearchPage">
+		<item value="false" key="includeArchives"/>
+		<item value="false" key="fileNameRegex"/>
+		<item value="true" key="caseSensitive"/>
+		<item value="true" key="includeSubfolders"/>
+		<item value="1" key="dataSize"/>
+		<item value="false" key="stringRegex"/>
+		<item value="true" key="fileNameCaseSensitive"/>
+	</section>
+	<section name="RemoteSearchPage.data0">
+		<item value="PC11" key="profileName"/>
+		<item value="u_id" key="searchString"/>
+		<item value="false" key="includeArchives"/>
+		<item value="false" key="fileNameRegex"/>
+		<item value="true" key="caseSensitive"/>
+		<item value="true" key="includeSubfolders"/>
+		<item value="false" key="stringRegex"/>
+		<item value="true" key="fileNameCaseSensitive"/>
+		<item value="ローカル" key="connectionName"/>
+		<item value="C:\webwork\poristagram" key="folderName"/>
+		<item value="*" key="fileNames"/>
+	</section>
+</section>

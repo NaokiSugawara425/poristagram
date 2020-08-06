@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="&apos;rei09.jsp&apos; を &apos;jsp&apos; に移動" description="&apos;rei09.jsp&apos; を &apos;jsp&apos; に移動" destination="WebContent/jsp" element1="WebContent/rei09.jsp" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="1" stamp="1591143589152" updateReferences="true"/>
+</session>

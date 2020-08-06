@@ -1,0 +1,234 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="poristagram.LoginBean" %>
+<%@ page import="poristagram.PostBean" %>
+<%@ page import="poristagram.FollowerBean" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/default.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<%!
+public int id ;
+public int toid ;
+
+public int cid = 0;
+
+public int createCid(int id,int toid){
+if(id>toid) {
+	cid=id*1000+toid;
+}
+else {
+	cid=id+toid*1000;
+}
+
+return cid;
+}
+String name = "送信者";
+String toname = "受信者";
+
+%>
+<!-- コメント未入力時のエラー表示（javascript） -->
+<script type="text/javascript">
+
+function check(){
+    var flag = 0;
+
+
+    if(document.form1.comment.value == ""){
+        flag = 1;
+    }
+
+    if(flag){
+        window.alert('コメントを入力してください');
+        return false; // 送信を中止
+    }
+    else{
+        return true; // 送信を実行
+    }
+}
+
+
+
+</script>
+
+<!-- スタイルシート -->
+<style>
+.balloon1-left {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 0 1.5em 15px;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #e0edff;
+  border-radius: 15px;
+}
+
+.balloon1-left:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -25px;
+  margin-top: -15px;
+  border: 15px solid transparent;
+  border-right: 15px solid #e0edff;
+}
+
+.balloon1-left p {
+  margin: 0;
+  padding: 0;
+}
+
+.balloon1-right {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 15px 1.5em 0;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #00FF00;
+  border-radius: 15px;
+}
+
+.balloon1-right:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 98%;
+  margin-top: -15px;
+  border: 15px solid transparent;
+  border-left: 15px solid #00FF00;
+}
+
+.balloon1-right p {
+  margin: 0;
+  padding: 0;
+}
+
+
+.btn-gradient-radius {
+  display: inline-block;
+  padding: 7px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  color: #696969 ;
+  background-image: linear-gradient(45deg, #00ff00   0%, #32cd32   100%);
+  transition: .4s;
+}
+
+.btn-gradient-radius:hover {
+  background-image: linear-gradient(45deg, #98fb98  0%, #90ee90  100%);
+}
+
+.text-r{
+border-radius: 20px;
+overflow:hidden;
+}
+</style>
+<title>メッセージ</title>
+</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="header_logo_image"></div>
+	</div>
+	<!-- main要素に囲まれたところは各ページ自由に記述OKです。
+	それ以外はいじらないでください。
+	ここからがmain要素 -->
+<!-- 送信者、受信者情報 -->
+<%
+id=001;
+toid=002;
+cid=createCid(id,toid);
+%>
+
+
+
+
+
+
+
+<!-- メッセージ履歴 -->
+
+<table width="80%" align=center>
+	<c:forEach var="list" items="${allchat}">
+		<c:if test="${list.c_myid == loginuser.u_id}" var="flg" />
+		<c:if test="${flg}" >
+			<tr>
+				<td align=right>
+					<div class="balloon1-right" align=left>
+						<p>ID:<c:out value="${list.c_myid}"/> 名前:<c:out value="${list.c_myname}"/> 日付:<c:out value="${list.c_time}"/><br>
+						<c:out value="${list.c_comment}"/></p>
+					</div>
+				</td>
+			</tr>
+		</c:if>
+		<c:if test="${!flg}" >
+			<tr>
+				<td align=left>
+					<div class="balloon1-left">
+						<p>ID:<c:out value="${list.c_myid}"/> 名前:<c:out value="${list.c_myname}"/> 日付:<c:out value="${list.c_time}"/><br>
+						<c:out value="${list.c_comment}"/></p>
+					</div>
+				</td>
+			</tr>
+		</c:if>
+	</c:forEach>
+</table>
+<!-- 入力フォーム -->
+<table >
+<tr>
+<td>
+<form action="./BoardServlet" method="get" name="form1" onSubmit="return check()">
+<input type="hidden" name="id" value="${loginuser.u_id} ">
+<input type="hidden" name="toid" value="${touser.u_id}">
+<input type="hidden" name="cid" value="${rireki.cid}">
+<input type="hidden" name="name" value="${loginuser.u_name}">
+<input type="hidden" name="toname" value="${touser.u_name}">
+<input type="submit" value="更新" class="btn-gradient-radius" align=right>
+</form>
+</td>
+<td>
+<form action="./BoardServlet" method="post" name="form1" onSubmit="return check()">
+
+<textarea name="comment" rows="5" cols="100" class="text-r" ></textarea>
+</td>
+<td>
+<input type="hidden" name="id" value="${loginuser.u_id} ">
+<input type="hidden" name="toid" value="${touser.u_id}">
+<input type="hidden" name="cid" value="${rireki.cid}">
+<input type="hidden" name="name" value="${loginuser.u_name}">
+<input type="hidden" name="toname" value="${touser.u_name}">
+<input type="submit" value="送信" class="btn-gradient-radius">
+</td>
+</tr>
+</form>
+
+<!-- 自動ページ最下部移動(javascript) -->
+<script type="text/javascript">
+var element = document.documentElement;
+var bottom = element.scrollHeight - element.clientHeight;
+window.scroll(0, bottom);
+</script>
+<!-- ここまでがmain要素 -->
+	<div id="footer">
+	<p>
+		<a class="girly_btn_2" href="/poristagram/HomeController">Home</a>
+		<a class="girly_btn_2" href="/poristagram/UploadController">Post</a>
+		<a class="girly_btn_2" href="/poristagram/Tokensaku">Search</a>
+		<a class="girly_btn_2" href="/poristagram/TomypageController">MyPage</a>
+		<a class="girly_btn_2" href="/poristagram/LogoutController">Logout</a>
+		</p>
+	</div>
+</div>
+</body>
+</html>
+</body>
+</html>

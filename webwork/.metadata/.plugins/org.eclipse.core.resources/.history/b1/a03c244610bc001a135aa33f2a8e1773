@@ -1,0 +1,61 @@
+package poristagram;
+
+
+import java.io.Serializable;
+import java.sql.Timestamp;
+
+public class Board implements Serializable {
+    private int id;
+    private int toid;
+    private int cid;
+    private String name;
+    private String toname;
+    private String comment;
+    private Timestamp time;
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+    public int getToid() {
+        return toid;
+    }
+    public void setToid(int toid) {
+        this.toid = toid;
+    }
+    public int getCid() {
+        return cid;
+    }
+    public void setCid(int cid) {
+        this.cid = cid;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getToname() {
+        return toname;
+    }
+    public void setToname(String toname) {
+        this.toname = toname;
+    }
+    public Timestamp getTime() {
+        return time;
+    }
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
+
+
+    public String getComment() {
+        return comment;
+    }
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+}

@@ -1,0 +1,95 @@
+package poristagram;
+
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+public class KensakuDAO {
+
+    public List<KensakuBean> kensaku(String kensakuname) {
+
+
+
+
+
+
+        // u_id,u_name,u_iconを格納するリスト
+        List<KensakuBean> list = new ArrayList<>();
+
+        final String jdbcId = "root";
+        final String jdbcPass = "rootpass";
+        final String jdbcUrl = "jdbc:mysql://localhost:3306/databasetest?useSSL=false";;
+
+        Connection con = null;
+
+        try {
+        	Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(jdbcUrl, jdbcId, jdbcPass);
+
+            System.out.println("Connected....");
+
+           try {
+                Statement st = con.createStatement();
+                String sql = "select u_id,u_name,u_icon from user where u_name like '%"+kensakuname
+             +"%'";
+
+              try {
+                    // sqlを送信
+                    ResultSet rs = st.executeQuery(sql);
+
+                    while (rs.next()) {
+                        // DBから取り出したu_id,u_name,u_iconをJavaBeansにset
+                    	KensakuBean iwata = new KensakuBean();
+                    	iwata .setU_id(rs.getInt("u_id"));
+                    	iwata .setU_name(rs.getString("u_name"));
+                    	iwata .setU_icon(rs.getString("u_icon"));
+
+
+                        // リストに1個ずつ格納。末尾に要素が追加されていく。
+
+                        list.add(iwata);
+
+                   }
+
+                    rs.close();
+                    st.close();
+
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+          } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            finally {
+                // データベース接続の切断
+                if (con != null) {
+                    try {
+                        con.close();
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } catch (ClassNotFoundException e) {
+               e.printStackTrace();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Connection Failed.");
+            return null;
+        }
+        return list;
+
+    }
+
+}

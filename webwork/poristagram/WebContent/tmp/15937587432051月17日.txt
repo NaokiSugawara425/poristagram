@@ -1,0 +1,15 @@
+﻿1月17日
+1限
+リモート復習
+されてれば
+su-
+ps ax | grep sshd(プロセス確認）
+netstat -na | more(ネットワーク状況確認)
+squid（やりいか）コードネーム
+
+2限
+利用可能なサービスの一覧
+systemctl list-unit-files --type=service
+	sshd.service	enabled(boot時に起動する）
+
+
